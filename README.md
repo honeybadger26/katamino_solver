@@ -1,4 +1,4 @@
-# katamino_solver
+# Katamino Solver
 
 Solver scripts for the board game Katamino
 
