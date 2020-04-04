@@ -1,5 +1,5 @@
+import time
 import copy, puzzle
-
 
 def get_reflection(block):
     # reflect a block vertically
@@ -55,7 +55,7 @@ def place_block(board, pos, block):
                 board[x + i][y + j] = block[i][j]
 
 
-def main():
+def solve():
     # initialize
     blocks = puzzle.blocks
     brd_length = puzzle.board_dimensions[0]
@@ -93,7 +93,6 @@ def main():
             bl_info.append(placement)
             bl_info.append({'pos': {'x': 0, 'y': 0}, 'perm': 0})
             block_num += 1
-            print('%d at x=%d y=%d perm=%d' % (block_num, placement['pos']['y'], placement['pos']['x'], placement['perm']+1))
             for r in history[-1]:
                 print(r)
             print()
@@ -111,5 +110,13 @@ def main():
         if block_num == len(blocks):
             solved = True
 
+def main():
+    start = time.time()
+    solve()
+    end = time.time()
+    print("exection time: %s seconds\n" % (end-start))
+    
 
-main()
+if __name__ == "__main__":
+        # execute only if run as a script
+        main()
