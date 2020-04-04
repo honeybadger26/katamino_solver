@@ -2,14 +2,14 @@
 
 Solver scripts for the board game Katamino
 
-## C version:
+## C:
 ```
 cd C/
 gcc -o solver solver.c
 ./solver
 ```
 
-## Python version:
+## Python:
 ```
 cd Python/
 python solver.py
