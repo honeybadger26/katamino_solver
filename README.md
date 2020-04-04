@@ -5,7 +5,7 @@ Solver scripts for the board game Katamino
 ## C version:
 ```
 cd C/
-gcc -0 solver solver.c
+gcc -o solver solver.c
 ./solver
 ```
 
