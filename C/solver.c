@@ -17,6 +17,18 @@ struct PlacementInfo {
 };
 
 /*
+ * prints the game board
+ */
+void print_board(int board[HEIGHT][WIDTH]) {
+    for (int i=0; i < HEIGHT; i++) {
+        for (int j=0; j < WIDTH; j++) 
+            printf("%d ", board[i][j]);
+        printf("\n");
+    }
+    printf("\n");
+}
+
+/*
  * finds if block can be placed at x, y position on board
  * if block cannot be placed returns 0
  */
@@ -41,18 +53,6 @@ int place_block(int board[HEIGHT][WIDTH], int x, int y, struct Block block) {
     }
 
     return 1;
-}
-
-/*
- * prints the game board
- */
-void print_board(int board[HEIGHT][WIDTH]) {
-    for (int i=0; i < HEIGHT; i++) {
-        for (int j=0; j < WIDTH; j++) 
-            printf("%d ", board[i][j]);
-        printf("\n");
-    }
-    printf("\n");
 }
 
 /*
@@ -127,8 +127,8 @@ int solve() {
     int status = 0;
 
     // initialise boards
-    int board[NUM_BLOCKS][HEIGHT][WIDTH];
-    memset(board, 0, sizeof(int) * NUM_BLOCKS * HEIGHT * WIDTH);
+    int boards[NUM_BLOCKS][HEIGHT][WIDTH];
+    memset(boards, 0, sizeof(int) * NUM_BLOCKS * HEIGHT * WIDTH);
 
     // create array of placement info
     struct PlacementInfo bl_info[NUM_BLOCKS];
@@ -145,9 +145,9 @@ int solve() {
         for (int i=0; i < HEIGHT; i++) {
             for (int j=0; j < WIDTH; j++) {
                 if (block_num == 0)
-                    board[block_num][i][j] = 0;
+                    boards[block_num][i][j] = 0;
                 else
-                    board[block_num][i][j] = board[block_num-1][i][j];
+                    boards[block_num][i][j] = boards[block_num-1][i][j];
             }
         }
 
@@ -193,8 +193,8 @@ int solve() {
         set_permutation(&block, block_num, permutation);
 
         // try to place block
-        if (place_block(board[block_num], x, y, block) == 1) {
-            print_board(board[block_num]);
+        if (place_block(boards[block_num], x, y, block) == 1) {
+            print_board(boards[block_num]);
 
             // solution found
             if (++block_num >= NUM_BLOCKS) 

@@ -41,4 +41,5 @@ blocks = [
 ]
 
 # board dimensions for this puzzle
-board_dimensions = [6, 5]
+HEIGHT = 5
+WIDTH = 6
